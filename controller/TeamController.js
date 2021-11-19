@@ -1,5 +1,5 @@
 import Team from "../model/Team.js"
-
+import { v4 } from "uuid"
 
 export const getAllTeams = async (req, res) => {
     try{
@@ -21,15 +21,28 @@ export const getOneTeam = async (req, res) => {
     }
 }
 
-export const updateTeam = async (req, res) => {
-    const { id } = req.params
-    const { password } = req.body
 
-    const hashedPassword = await bcrypt.hash(password, 10)
+export const postOneTeam = async (req, res) => {
+    const teamID = v4()
+    const team = new Team({...req.body, teamID})
 
     try {
-        const team = await Team.findByIdAndUpdate(id, {...req.body, password: hashedPassword})
+        await team.save()
         res.json(team)
+        
+    } catch (error) {
+        res.json({error})
+    }
+}
+
+
+export const updateTeam = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const team = await Team.findByIdAndUpdate(id, req.body)
+        res.json(team)
+
     } catch (error) {
         res.json({error})
     }

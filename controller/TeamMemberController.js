@@ -23,12 +23,20 @@ export const getOneTeamMember = async (req, res) => {
 
 export const updateTeamMember = async (req, res) => {
     const { id } = req.params
-    const { password } = req.body
-
-    const hashedPassword = await bcrypt.hash(password, 10)
 
     try {
-        const teamMember = await TeamMember.findByIdAndUpdate(id, {...req.body, password: hashedPassword})
+        const teamMember = await TeamMember.findByIdAndUpdate(id, req.body)
+        res.json(teamMember)
+    } catch (error) {
+        res.json({error})
+    }
+}
+
+export const postOneTeamMember = async (req, res) => {
+    const teamMember = new TeamMember(req.body)
+
+    try {
+        await teamMember.save()
         res.json(teamMember)
     } catch (error) {
         res.json({error})
