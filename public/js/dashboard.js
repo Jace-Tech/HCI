@@ -1,4 +1,1 @@
-const ADMIN = JSON.parse(localStorage.getItem("ADMIN"))
-
-
-console.log({ADMIN})
+const STAFF = JSON.parse(localStorage.getItem("STAFF"))

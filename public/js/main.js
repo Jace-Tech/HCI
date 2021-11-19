@@ -2,7 +2,7 @@ const form = document.querySelector("form")
 const message = document.querySelector("#message")
 
 const handleSubmit = async (data) => {
-    const URL = "http://localhost:5000/auth/admin/login"
+    const URL = "http://localhost:5000/auth/staff/login"
     const options = {
         method: "Post",
         body: data,
@@ -15,7 +15,7 @@ const handleSubmit = async (data) => {
     const response = await request.json()
 
     if(!response?.error){
-        localStorage.setItem("ADMIN", JSON.stringify(response))
+        localStorage.setItem("STAFF", JSON.stringify(response))
         message.className = "alert alert-success opacity-8 text-light mb-3"
         message.textContent = "Success! Redirecting..."
 
