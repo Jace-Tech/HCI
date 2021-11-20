@@ -21,3 +21,23 @@ export const handleAdminRegister = async (req, res) => {
         console.log({error})
     }
 }
+
+export const handleStaffRegister = async (req, res) => {
+    const data = JSON.stringify(req.body)
+    
+    const config = {
+        method: 'Post',
+        url: `${URL}/auth/staff/register`,
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data
+    };
+    
+    try{
+        const { data } = await axios(config)
+        if(data) res.redirect('/admin/')
+    } catch(error){
+        console.log({error})
+    }
+}

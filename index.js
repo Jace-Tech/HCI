@@ -7,6 +7,11 @@ import authRoute from "./routes/auth.js"
 import teamRoute from "./routes/team.js"
 import mainRoute from "./routes/main.js"
 import handlerRoute from "./routes/handler.js"
+import allowanceRoute from "./routes/allowance.js"
+import benefitRoute from "./routes/benefit.js"
+import wageRoute from "./routes/wage.js"
+import workRoute from "./routes/work.js"
+import meterRoute from "./routes/meter.js"
 import teamMemberRoute from "./routes/teamMember.js"
 
 
@@ -23,6 +28,11 @@ app.set("view engine", "ejs")
 app.use("/", mainRoute)
 app.use("/handler", handlerRoute)
 app.use("/auth", authRoute)
+app.use("/meter", meterRoute)
+app.use("/work", workRoute)
+app.use("/wage", wageRoute)
+app.use("/allowance", allowanceRoute)
+app.use("/benefit", benefitRoute)
 app.use("/team", teamRoute)
 app.use("/team_member", teamMemberRoute)
 
